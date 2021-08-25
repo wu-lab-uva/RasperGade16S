@@ -1,4 +1,4 @@
-# RasperGade16S: Prediction and correction of 16S rRNA GCN with RasperGade in 16S-profiled bacterial communities
+# RasperGade16S: Prediction and correction of 16S rRNA GCN
 `RasperGade16S` is a specialized R package that predicts ancestral and hidden states while accounting for pulsed evolution and time-independent variation.
 In addition to what `RasperGade` can do, `RasperGade16S` has some functions dedicated to 16S rRNA GCN:
 
