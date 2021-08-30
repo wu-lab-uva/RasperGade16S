@@ -1,3 +1,6 @@
+#' @import RasperGade
+#' @title Grouping connected nodes into neighborhoods
+#' @description This function finds the maximal neighborhood that includes the focal node
 #' @export
 #' @rdname get_connected_nodes
 get_connected_nodes = function(tree,node,group){
@@ -22,6 +25,8 @@ get_connected_nodes = function(tree,node,group){
               group = group[node],size=length(this.cluster)))
 }
 
+#' @title Parse grouping information
+#' @description This function parse grouping information of nodes to contiguous neighborhoods 
 #' @export
 #' @rdname check_partition
 check_partition = function(tree,dAIC,group){
@@ -41,6 +46,8 @@ check_partition = function(tree,dAIC,group){
   return(clusters)
 }
 
+#' @title Binary partition of a phylogeny
+#' @description This function partition a phylogeny given the delta AIC in each node
 #' @export
 #' @rdname partition_phylogeny
 partition_phylogeny_by_AIC_single = function(tree,dAIC,flip=FALSE){
@@ -105,6 +112,8 @@ partition_phylogeny_by_AIC_single = function(tree,dAIC,flip=FALSE){
               dAIC=-sum(dAIC[all.group[Ntip(tree)+(1:Nnode(tree))]<0])+2*num.transition))
 }
 
+#' @title Calculate AIC after partition
+#' @description This function calculates the AIC of the heterogeneous model
 #' @export
 #' @rdname get_partition_AIC
 get_partition_AIC = function(tree,trait,models,group){
@@ -141,6 +150,8 @@ get_partition_AIC = function(tree,trait,models,group){
   return(partition.AIC)
 }
 
+#' @title Get number of transitions
+#' @description This function calculates the number of transitions between groups
 #' @export
 #' @rdname get_partition_transition
 get_partition_transition = function(tree,group){
@@ -152,6 +163,8 @@ get_partition_transition = function(tree,group){
   return(num.transition)
 }
 
+#' @title Refine partition by reverting groups
+#' @description This function refines neighborhoods that have worse AIC
 #' @export
 #' @rdname refine_partition
 refine_partition = function(tree,dAIC,group){
@@ -178,6 +191,9 @@ refine_partition = function(tree,dAIC,group){
   }
   return(list(group=group,partition=current.partition))
 }
+
+#' @title Rescale tree given a partition and models
+#' @description This function rescales a tree so that a homogeneous model can apply
 #' @export
 #' @rdname rescale_tree_by_partition_and_model
 rescale_tree_by_partition_and_model = 
