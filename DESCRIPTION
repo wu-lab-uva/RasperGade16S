@@ -1,15 +1,19 @@
 Package: RasperGade16S
-Title: What the Package Does (One Line, Title Case)
+Title: Prediction of 16S rRNA GCN with RasperGade
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Yingnan",
+           family = "Gao",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
-    license
+           email = "yg5ap@virginia.edu",
+           comment = c(ORCID = "0000-0002-0960-4519"))
+Description: This package predicts 16S rRNA GCN.
+Depends:
+        RasperGade
+Imports:
+        phyloseq
+        microbiome
+License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
