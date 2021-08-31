@@ -9,8 +9,9 @@ Authors@R:
            comment = c(ORCID = "0000-0002-0960-4519"))
 Description: This package predicts 16S rRNA GCN.
 Depends:
-        RasperGade,
-        phyloseq
+    RasperGade,
+    phyloseq,
+    R (>= 2.10)
 Imports:
         microbiome
 License: GPL (>= 3)
