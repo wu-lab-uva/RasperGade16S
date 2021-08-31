@@ -1,4 +1,5 @@
 #' @title Convert absolute abundance to relative abundance
+#' @description 
 #' @export
 #' @rdname relative_abundance
 relative_abundance = function(abundance){
@@ -27,5 +28,10 @@ correct_GCN = function(gene.abundance,GCN,normalize =TRUE){
 
 #' @export
 correct_abundance_table = function(abundance,GCN,normalize=TRUE){
+  as.data.frame(t(apply(abundance,1,correct_GCN,GCN = GCN,normalize=normalize)))
+}
+
+#' @export
+correct_abundance_table_with_SILVA = function(abundance,normalize=TRUE){
   as.data.frame(t(apply(abundance,1,correct_GCN,GCN = GCN,normalize=normalize)))
 }
