@@ -4,8 +4,12 @@
 #' @rdname insert_query_with_EPA
 insert_query_with_EPA = function(seqs,tree,ref.seqs,model,save.path,numCores=1,max.out=1){
   if(missing(save.path)) save.path = "RasperGade16S_EPA/"
-  if(!dir.exists(save.path)) dir.create(path = )
-  if(missing(tree))
+  if(!dir.exists(save.path)) dir.create(path = save.path)
+  if(missing(tree)){
+    tree = sprintf("%s/RasperGade16S.reftree.tre")
+    write.tree(phy = RasperGade16S.reftree,file = tree)
+  }
+  if(missing(ref.seqs))
   cmd = sprintf("epa-ng -t %s -s %s -q %s --model %s --preserve-rooting on --outdir %s --redo -T %d --filter-max %d",
                 tree,ref.seqs,seqs,model,save.path,numCores,max.out)
   cmd.out=system(command = cmd,intern = TRUE)
