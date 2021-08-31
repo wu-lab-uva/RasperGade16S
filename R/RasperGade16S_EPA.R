@@ -2,6 +2,10 @@
 #' @description 
 #' @export
 #' @rdname insert_query_with_EPA
-insert_query_with_EPA = function(seqs){
-  return()
+insert_query_with_EPA = function(seqs,tree,ref,model,save.paths,numCores=1,max.out=1){
+  if(missing(save.path)) stop("Save path has to be provided!")
+  cmd = sprintf("epa-ng -t %s -s %s -q %s --model %s --preserve-rooting on --outdir %s --redo -T %d --filter-max %d",
+                tree,ref,seqs,model,save.path,numCores,max.out)
+  cmd.out=system(command = cmd,intern = TRUE)
+  return(list(out=cmd.out,jplace=sprintf("%sepa_result.jplace",save.path)))
 }
