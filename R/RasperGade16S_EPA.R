@@ -63,12 +63,10 @@ trim_sequence_with_mask = function(align,trimmed.align,mask){
   if(any(is.na(matchedID))) stop("Sequences in mapped alignment missing!\n")
   ref.afa = sapply(afa[matchedID],function(x){res=x;res[x=="."]="-";return(res)})
   pos.key = apply(ref.afa,1,function(x){toupper(paste0(x,collapse = ""))})
-  inseq=c2s(rep("-",length(matchedID)))
+  inseq=seqinr::c2s(rep("-",length(matchedID)))
   pos2mask = which(!is.na(match(pos.key,mask)))
-  if(!keepRef){
-    afa = afa[-matchedID]
-  }
+  afa = afa[-matchedID]
   trim.afa = lapply(afa,function(x){x[pos2mask]})
   seqinr::write.fasta(sequences = trim.afa,names = sapply(afa,function(x){attr(x,"name")}),
-                      file.out = trimmed.align,nbchar = length(mask)+2)
+                      file.out = trimmed.align,nbchar = length(mask))
 }
