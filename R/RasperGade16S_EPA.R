@@ -31,6 +31,7 @@ align_with_HMM_and_trim = function(seqs,hmm,mapali,save.path){
                 save.path,mapali,hmm,seqs)
   cmd.out=system(command = cmd,intern = TRUE)
   cmd = sprintf("esl-reformat -o %s/seq.afa -u --gapsym=- afa %s/seq.align",save.path,save.path)
+  cmd.out=system(command = cmd,intern = TRUE)
   trim_sequence_with_mask(align = sprintf("%s/seq.afa",save.path),trimmed.align = sprintf("%s/trimmed.afa",save.path))
   return(list(out=cmd.out,afa = sprintf("%s/trimmed.afa",save.path)))
 }
