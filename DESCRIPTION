@@ -1,6 +1,6 @@
 Package: RasperGade16S
 Title: Prediction of 16S rRNA GCN with RasperGade
-Version: 0.0.0.9900
+Version: 0.0.0.9990
 Authors@R: 
     person(given = "Yingnan",
            family = "Gao",
