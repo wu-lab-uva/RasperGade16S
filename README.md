@@ -57,7 +57,7 @@ RasperGade16S can start from 16S rRNA sequences (e.g., representative sequences 
 Once installed, a small demo can be run in R to check if RasperGade16S operates properly:
 ```
 library(RasperGade16S)
-pred.GCN = predict_16SGCN_from_sequences(seqs=system.file("extdata/Demo","demo.SILVA.fasta",package="RasperGade16S",mustWork=TRUE))
+pred.GCN = predict_16SGCN_from_sequences()
 print(pred.GCN$tab)
 ```
 If everything works well, the following output should be expected
@@ -68,4 +68,8 @@ If everything works well, the following output should be expected
 3 GY203941.1.1493 4 0.99999796
 4 GY324971.1.1500 9 0.82278712
 5 JQ765578.1.1444 6 0.83112444
+```
+To run on your own sequence, supply the path to the FASTA file via the seqs= argument
+```
+pred.GCN = predict_16SGCN_from_sequences(seqs=PATH_TO_YOUR_SEQUENCE)
 ```
