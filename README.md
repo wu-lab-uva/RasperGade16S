@@ -45,5 +45,6 @@ BiocManager::install("microbiome")
 Other packages can be installed from CRAN.
 ## Data format
 RasperGade16S can start from 16S rRNA sequences (e.g., representative sequences for OTUs)
-## Reproduction of results in the preprint
+
+## Demo 
 To reproduce the results in the preprint, follow the instrucitons in
