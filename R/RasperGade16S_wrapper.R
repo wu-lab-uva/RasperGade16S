@@ -5,7 +5,7 @@
 predict_16SGCN_from_sequences = function(seqs){
   if(missing(seqs)){
     seqs = system.file("extdata/Demo","demo.SILVA.fasta",package="RasperGade16S",mustWork=TRUE)
-    cat(sprintf("No FASTA file supplied, running prediction using demo sequences in\n%s",seqs))
+    cat(sprintf("No FASTA file supplied, running prediction using demo sequences in\n%s\n\n",seqs))
     }
   align.out = align_with_HMM_and_trim(seqs=seqs)
   epa.out = insert_query_with_EPA(seqs="RasperGade16S_align/trimmed.afa")
