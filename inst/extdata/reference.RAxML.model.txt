@@ -1,0 +1,77 @@
+
+
+Using BFGS method to optimize GTR rate parameters, to disable this specify "--no-bfgs" 
+
+
+
+This is RAxML version 8.2.11 released by Alexandros Stamatakis on June 2017.
+
+With greatly appreciated code contributions by:
+Andre Aberer      (HITS)
+Simon Berger      (HITS)
+Alexey Kozlov     (HITS)
+Kassian Kobert    (HITS)
+David Dao         (KIT and HITS)
+Sarah Lutteropp   (KIT and HITS)
+Nick Pattengale   (Sandia)
+Wayne Pfeiffer    (SDSC)
+Akifumi S. Tanabe (NRIFS)
+Charlie Taylor    (UF)
+
+
+Alignment has 1181 distinct alignment patterns
+
+Proportion of gaps and completely undetermined characters in this alignment: 0.18%
+
+RAxML Model Optimization up to an accuracy of 0.100000 log likelihood units
+
+Using 1 distinct models/data partitions with joint branch length optimization
+
+
+All free model parameters will be estimated by RAxML
+GAMMA model of rate heterogeneity, ML estimate of alpha-parameter
+
+GAMMA Model parameters will be estimated up to an accuracy of 0.1000000000 Log Likelihood units
+
+Partition: 0
+Alignment Patterns: 1181
+Name: No Name Provided
+DataType: DNA
+Substitution Matrix: GTR
+
+
+
+
+RAxML was called as follows:
+
+/usr/bin/raxmlHPC-PTHREADS-AVX -f e -m GTRGAMMA -s repseq.trimmed.similar.reduced.afa -t RAxML_bestTree.trimmed.5S16Smatch.gtrgamma -n GAMMA_PARAMS -T 15 
+
+
+
+Model parameters (binary file format) written to: /home/ygao/Project/16S/Tara/20210502/RAxML_binaryModelParameters.GAMMA_PARAMS
+
+
+Overall Time for Tree Evaluation 83.123929
+Final GAMMA  likelihood: -587645.635953
+
+Number of free parameters for AIC-TEST(BR-LEN): 12822
+Number of free parameters for AIC-TEST(NO-BR-LEN): 9
+
+
+Model Parameters of Partition 0, Name: No Name Provided, Type of Data: DNA
+alpha: 0.464618
+Tree-Length: 257.497123
+rate A <-> C: 0.806602
+rate A <-> G: 3.106174
+rate A <-> T: 1.525584
+rate C <-> G: 0.704857
+rate C <-> T: 4.941058
+rate G <-> T: 1.000000
+
+freq pi(A): 0.253485
+freq pi(C): 0.229698
+freq pi(G): 0.316457
+freq pi(T): 0.200361
+
+Final tree written to:                 /home/ygao/Project/16S/Tara/20210502/RAxML_result.GAMMA_PARAMS
+Execution Log File written to:         /home/ygao/Project/16S/Tara/20210502/RAxML_log.GAMMA_PARAMS
