@@ -28,10 +28,11 @@ The following packages are required:
 `ape`,`castor`,`RasperGade`,`phyloseq`,`vegan`,`seqinr`,`treeio`,`microbiome`
 
 ## Installation
-RasperGade16S can be installed using the following command in R
+`RasperGade` and `RasperGade16S` can be installed using the following command in R
 ```
 if (!requireNamespace("devtools", quietly = TRUE))
     install.packages("devtools")
+devtools::install_github(repo = "wu-lab-uva/RasperGade")
 devtools::install_github(repo = "wu-lab-uva/RasperGade16S")
 ```
 `treeio`,`phyloseq`,`microbiome` can be installed from Bioconductor
