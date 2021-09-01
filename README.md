@@ -25,7 +25,7 @@ HMMER 3 (available from http://hmmer.org/)
 EPA-ng (available from  https://github.com/Pbdas/epa-ng)
 
 The following packages are required:
-`ape`,`castor`,`RasperGade`,`phyloseq`,`vegan`,`seqinr`,`treeio`
+`ape`,`castor`,`RasperGade`,`phyloseq`,`vegan`,`seqinr`,`treeio`,`microbiome`
 
 ## Installation
 RasperGade16S can be installed using the following command in R
@@ -34,12 +34,13 @@ if (!requireNamespace("devtools", quietly = TRUE))
     install.packages("devtools")
 devtools::install_github(repo = "wu-lab-uva/RasperGade16S")
 ```
-`treeio` and `phyloseq` can be installed from Bioconductor
+`treeio`,`phyloseq`,`microbiome` can be installed from Bioconductor
 ```
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 BiocManager::install("phyloseq")
 BiocManager::install("treeio")
+BiocManager::install("microbiome")
 ```
 Other packages can be installed from CRAN.
 ## Data format
