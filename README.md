@@ -43,7 +43,13 @@ BiocManager::install("phyloseq")
 BiocManager::install("treeio")
 BiocManager::install("microbiome")
 ```
-Other packages can be installed from CRAN.
+Other packages can be installed from CRAN
+```
+install.packages("ape")
+install.packages("castor")
+install.packages("vegan")
+install.packages("seqinr")
+```
 ## Data format
 RasperGade16S can start from 16S rRNA sequences (e.g., representative sequences for OTUs)
 
@@ -53,5 +59,5 @@ Once installed, a small demo can be run in R to check if RasperGade16S operates 
 library(RasperGade16S)
 align.out = align_with_HMM_and_trim(seqs=system.file("extdata/Demo","demo.SILVA.fasta",package="RasperGade16S",mustWork=TRUE))
 epa.out = insert_query_with_EPA(seqs="RasperGade16S_align/trimmed.afa")
-insert.locations = parse_jplace(jplace.dir,split = 1)
+insert.locations = parse_jplace(epa.out$jplace,split = 1)
 ```
