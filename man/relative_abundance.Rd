@@ -7,5 +7,5 @@
 relative_abundance(abundance)
 }
 \description{
-Convert absolute abundance to relative abundance
+Get relative abundance
 }

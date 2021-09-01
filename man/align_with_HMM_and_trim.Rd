@@ -4,7 +4,7 @@
 \alias{align_with_HMM_and_trim}
 \title{Align and trim sequence}
 \usage{
-align_with_HMM_and_trim(seqs, hmm, mapali, save.path)
+align_with_HMM_and_trim(seqs, hmm, mapali, mask, save.path)
 }
 \description{
 Align use HMMER 3

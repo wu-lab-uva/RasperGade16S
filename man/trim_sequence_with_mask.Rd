@@ -4,7 +4,7 @@
 \alias{trim_sequence_with_mask}
 \title{Trim 16S sequence based on GreenGene 13.8 16S mask}
 \usage{
-trim_sequence_with_mask(align, trimmed.align)
+trim_sequence_with_mask(align, trimmed.align, mask)
 }
 \description{
 Trim 16S sequence based on GreenGene 13.8 16S mask

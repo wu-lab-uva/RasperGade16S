@@ -47,3 +47,21 @@
 #' }
 #' @source \url{https://github.com/wu-lab-uva/16S-rRNA-GCN-Predcition}
 "RasperGade16S.GG.13.8.mask.keys"
+
+#' Default full reference data for RasperGade16S
+#'
+#' A named list of 8 elements
+#'
+#' @format A named list with 8 elements:
+#' \describe{
+#'   \item{phy}{scaled reference tree}
+#'   \item{model}{evolution model for GCN prediction}
+#'   \item{epsilon}{tip-specific epsilon term}
+#'   \item{scale.branch}{scaling factor for each branch, indexed by the descendant node}
+#'   \item{epsilon.branch}{branch-specific epsilon term}
+#'   \item{dat}{reference GCN}
+#'   \item{original}{unscaled reference tree}
+#'   \item{FMR}{marginal ancestral states for quick prediction of GCN}
+#' }
+#' @source \url{https://github.com/wu-lab-uva/16S-rRNA-GCN-Predcition}
+"RasperGade16S.refdata"

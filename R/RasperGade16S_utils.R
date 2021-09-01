@@ -1,5 +1,5 @@
 #' @title Convert absolute abundance to relative abundance
-#' @description 
+#' @description Get relative abundance
 #' @export
 #' @rdname relative_abundance
 relative_abundance = function(abundance){
