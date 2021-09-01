@@ -21,12 +21,13 @@ insert_query_with_EPA = function(seqs,tree,ref.seqs,model,save.path,numCores=1,m
 #' @description Align use HMMER 3
 #' @export
 #' @rdname align_with_HMM_and_trim
-align_with_HMM_and_trim = function(seqs,hmm,mapali,save.path){
+align_with_HMM_and_trim = function(seqs,hmm,mapali,mask,save.path){
   if(missing(seqs)) stop("Path to query sequences must be provided!")
   if(missing(save.path)) save.path = "RasperGade16S_align/"
   if(!dir.exists(save.path)) dir.create(path = save.path,recursive = TRUE)
   if(missing(hmm)) hmm = system.file("extdata","16S_core_gg.hmm",package = "RasperGade16S",mustWork = TRUE)
   if(missing(mapali)) mapali = system.file("extdata","aligned_remove_dot.fasta",package = "RasperGade16S",mustWork = TRUE)
+  if(missing(mask)) mask = RasperGade16S.GG.13.8.mask.keys
   if(Sys.info()["sysname"]=="Windows") stop("HMMER3 currently not available on Windows.\nSee https://http://hmmer.org/ for more information.")
   cmd = sprintf("hmmalign --trim --dna -o %s/seq.align --mapali %s %s %s",
                 save.path,mapali,hmm,seqs)
@@ -35,7 +36,9 @@ align_with_HMM_and_trim = function(seqs,hmm,mapali,save.path){
   cmd = sprintf("esl-reformat -o %s/seq.afa -u --gapsym=- afa %s/seq.align",save.path,save.path)
   print(cmd)
   cmd.out=system(command = cmd,intern = TRUE)
-  trim_sequence_with_mask(align = sprintf("%s/seq.afa",save.path),trimmed.align = sprintf("%s/trimmed.afa",save.path))
+  trim_sequence_with_mask(align = sprintf("%s/seq.afa",save.path),
+                          trimmed.align = sprintf("%s/trimmed.afa",save.path),
+                          mask=mask)
   return(list(out=cmd.out,afa = sprintf("%s/trimmed.afa",save.path)))
 }
 
@@ -43,15 +46,20 @@ align_with_HMM_and_trim = function(seqs,hmm,mapali,save.path){
 #' @description Trim 16S sequence based on GreenGene 13.8 16S mask
 #' @export
 #' @rdname trim_sequence_with_mask
-trim_sequence_with_mask = function(align,trimmed.align){
+trim_sequence_with_mask = function(align,trimmed.align,mask){
+  if(missing(mask)){
+    mask = RasperGade.GG.13.8.mask.keys
+  }else{
+      mask = readRDS(mask)
+    }
   afa = seqinr::read.fasta(file = align,seqtype = "DNA",as.string = FALSE,forceDNAtolower = FALSE)
   afa.id = unname(sapply(afa,function(x){attr(x,"name")}))
-  matchedID = match(attr(GG.13.8.mask.keys,"seq_id"),afa.id)
+  matchedID = match(attr(mask,"seq_id"),afa.id)
   if(any(is.na(matchedID))) stop("Sequences in mapped alignment missing!\n")
   ref.afa = sapply(afa[matchedID],function(x){res=x;res[x=="."]="-";return(res)})
   pos.key = apply(ref.afa,1,function(x){toupper(paste0(x,collapse = ""))})
   inseq=c2s(rep("-",length(matchedID)))
-  pos2mask = which(!is.na(match(pos.key,GG.13.8.mask.keys)))
+  pos2mask = which(!is.na(match(pos.key,mask)))
   if(!keepRef){
     afa = afa[-matchedID]
   }
