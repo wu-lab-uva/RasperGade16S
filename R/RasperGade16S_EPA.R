@@ -12,6 +12,7 @@ insert_query_with_EPA = function(seqs,tree,ref.seqs,model,save.path,numCores=1,m
   if(Sys.info()["sysname"]=="Windows") stop("EPA-ng currently not available on Windows.\nSee https://github.com/Pbdas/epa-ng for more information.")
   cmd = sprintf("epa-ng -t %s -s %s -q %s --model %s --preserve-rooting on --outdir %s --redo -T %d --filter-max %d",
                 tree,ref.seqs,seqs,model,save.path,numCores,max.out)
+  print(cmd)
   cmd.out=system(command = cmd,intern = intern)
   return(list(out=cmd.out,jplace=sprintf("%s/epa_result.jplace",save.path)))
 }
@@ -29,8 +30,10 @@ align_with_HMM_and_trim = function(seqs,hmm,mapali,save.path){
   if(Sys.info()["sysname"]=="Windows") stop("HMMER3 currently not available on Windows.\nSee https://http://hmmer.org/ for more information.")
   cmd = sprintf("hmmalign --trim --dna -o %s/seq.align --mapali %s %s %s",
                 save.path,mapali,hmm,seqs)
+  print(cmd)
   cmd.out=system(command = cmd,intern = TRUE)
   cmd = sprintf("esl-reformat -o %s/seq.afa -u --gapsym=- afa %s/seq.align",save.path,save.path)
+  print(cmd)
   cmd.out=system(command = cmd,intern = TRUE)
   trim_sequence_with_mask(align = sprintf("%s/seq.afa",save.path),trimmed.align = sprintf("%s/trimmed.afa",save.path))
   return(list(out=cmd.out,afa = sprintf("%s/trimmed.afa",save.path)))
