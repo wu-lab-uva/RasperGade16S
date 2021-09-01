@@ -11,9 +11,10 @@ insert_query_with_EPA(
   model,
   save.path,
   numCores = 1,
-  max.out = 1
+  max.out = 1,
+  intern = TRUE
 )
 }
 \description{
-Run EPA from R terminal
+Calls EPA-ng and insert query sequences into the reference
 }

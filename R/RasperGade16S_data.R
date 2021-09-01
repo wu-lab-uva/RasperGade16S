@@ -36,3 +36,14 @@
 #' @source \url{https://github.com/wu-lab-uva/16S-rRNA-GCN-Predcition}
 "RasperGade16S.SILVA.GCN"
 
+#' GreenGene 13.8 16S rRNA gene mask for RasperGade16S
+#'
+#' A character vector of 1287 elements
+#'
+#' @format A character vector of 1287 elements; each element has 4938 characters:
+#' \describe{
+#'   \item{values}{16S rRNA gene sequence at each position}
+#'   \item{seq_id}{the attribute that marks the identity of each 16S rRNA gene sequence}
+#' }
+#' @source \url{https://github.com/wu-lab-uva/16S-rRNA-GCN-Predcition}
+"RasperGade16S.GG.13.8.mask.keys"
