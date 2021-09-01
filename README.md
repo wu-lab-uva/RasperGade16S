@@ -57,19 +57,8 @@ RasperGade16S can start from 16S rRNA sequences (e.g., representative sequences 
 Once installed, a small demo can be run in R to check if RasperGade16S operates properly:
 ```
 library(RasperGade16S)
-align.out = align_with_HMM_and_trim(seqs=system.file("extdata/Demo","demo.SILVA.fasta",package="RasperGade16S",mustWork=TRUE))
-epa.out = insert_query_with_EPA(seqs="RasperGade16S_align/trimmed.afa")
-insert.locations = parse_jplace(epa.out$jplace,split = 1)
-insert.prediction = lapply(insert.locations,function(this.insert){
-  this.res = predictHiddenStateWithPE(FMR = RasperGade16S.refdata$FMR,
-  query.keys = this.insert$hash,laplace = FALSE)
-  return(this.res)
-})
-insert.res = list(hsp=do.call(rbind,lapply(insert.prediction,function(x){x$hsp})),
-                  error=do.call(c,lapply(insert.prediction,function(x){x$error})))
-insert.discrete.res = discretizeResult(res = insert.res$hsp,
-                                       error = insert.res$error,laplace = FALSE)
-print(insert.discrete.res)
+pred.GCN = predict_16SGCN_from_sequences(seqs=system.file("extdata/Demo","demo.SILVA.fasta",package="RasperGade16S",mustWork=TRUE))
+print(pred.GCN$tab)
 ```
 If everything works well, the following output should be expected
 ```
