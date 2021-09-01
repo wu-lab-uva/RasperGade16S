@@ -34,3 +34,24 @@ align_with_HMM_and_trim = function(seqs,hmm,mapali,save.path){
   trim_sequence_with_mask(align = sprintf("%s/seq.afa",save.path),trimmed.align = sprintf("%s/trimmed.afa",save.path))
   return(list(out=cmd.out,afa = sprintf("%s/trimmed.afa",save.path)))
 }
+
+#' @title Trim 16S sequence based on GreenGene 13.8 16S mask
+#' @description Trim 16S sequence based on GreenGene 13.8 16S mask
+#' @export
+#' @rdname trim_sequence_with_mask
+trim_sequence_with_mask = function(align,trimmed.align){
+  afa = seqinr::read.fasta(file = align,seqtype = "DNA",as.string = FALSE,forceDNAtolower = FALSE)
+  afa.id = unname(sapply(afa,function(x){attr(x,"name")}))
+  matchedID = match(attr(GG.13.8.mask.keys,"seq_id"),afa.id)
+  if(any(is.na(matchedID))) stop("Sequences in mapped alignment missing!\n")
+  ref.afa = sapply(afa[matchedID],function(x){res=x;res[x=="."]="-";return(res)})
+  pos.key = apply(ref.afa,1,function(x){toupper(paste0(x,collapse = ""))})
+  inseq=c2s(rep("-",length(matchedID)))
+  pos2mask = which(!is.na(match(pos.key,GG.13.8.mask.keys)))
+  if(!keepRef){
+    afa = afa[-matchedID]
+  }
+  trim.afa = lapply(afa,function(x){x[pos2mask]})
+  seqinr::write.fasta(sequences = trim.afa,names = sapply(afa,function(x){attr(x,"name")}),
+                      file.out = trimmed.align,nbchar = length(mask)+2)
+}

@@ -1,3 +1,5 @@
+#' @import phyloseq
+#' @import vegan
 #' @export
 calculate_Aitchison_dist = function(abundance.table){
   if(class(abundance.table)!="phyloseq") abundance.table = phyloseq(otu_table(object = abundance.table,taxa_are_rows = FALSE))

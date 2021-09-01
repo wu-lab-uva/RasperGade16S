@@ -13,7 +13,8 @@ Depends:
     phyloseq,
     R (>= 2.10)
 Imports:
-        microbiome
+        microbiome,
+        vegan
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
