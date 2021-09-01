@@ -36,9 +36,14 @@ align_with_HMM_and_trim = function(seqs,hmm,mapali,mask,save.path){
   cmd = sprintf("esl-reformat -o %s/seq.afa -u --gapsym=- afa %s/seq.align",save.path,save.path)
   print(cmd)
   cmd.out=system(command = cmd,intern = TRUE)
-  trim_sequence_with_mask(align = sprintf("%s/seq.afa",save.path),
-                          trimmed.align = sprintf("%s/trimmed.afa",save.path),
-                          mask=mask)
+  if(is.null(mask)){
+    file.copy(from = sprintf("%s/seq.afa",save.path),to = sprintf("%s/trimmed.afa",save.path),
+              overwrite = TRUE)
+  }else{
+    trim_sequence_with_mask(align = sprintf("%s/seq.afa",save.path),
+                            trimmed.align = sprintf("%s/trimmed.afa",save.path),
+                            mask=mask)
+  }
   return(list(out=cmd.out,afa = sprintf("%s/trimmed.afa",save.path)))
 }
 
@@ -50,7 +55,7 @@ trim_sequence_with_mask = function(align,trimmed.align,mask){
   if(missing(mask)){
     mask = RasperGade.GG.13.8.mask.keys
   }else{
-      mask = readRDS(mask)
+    if(length(mask)<=1) mask = readRDS(mask)
     }
   afa = seqinr::read.fasta(file = align,seqtype = "DNA",as.string = FALSE,forceDNAtolower = FALSE)
   afa.id = unname(sapply(afa,function(x){attr(x,"name")}))

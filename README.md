@@ -47,4 +47,9 @@ Other packages can be installed from CRAN.
 RasperGade16S can start from 16S rRNA sequences (e.g., representative sequences for OTUs)
 
 ## Demo 
-To reproduce the results in the preprint, follow the instrucitons in
+Once installed, a small demo can be run in R to check if RasperGade16S operates properly:
+```
+library(RasperGade16S)
+align.out = align_with_HMM_and_trim(seqs=system.file("extdata/Demo","demo.SILVA.fasta",package="RasperGade16S",mustWork=TRUE))
+
+```
