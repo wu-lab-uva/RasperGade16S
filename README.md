@@ -68,5 +68,15 @@ insert.prediction = lapply(insert.locations,function(this.insert){
 insert.res = list(hsp=do.call(rbind,lapply(insert.prediction,function(x){x$hsp})),
                   error=do.call(c,lapply(insert.prediction,function(x){x$error})))
 insert.discrete.res = discretizeResult(res = insert.res$hsp,
-                                       error = insert.res$error,laplace = FALSE,numCores=numCores)
+                                       error = insert.res$error,laplace = FALSE)
+print(insert.discrete.res)
+```
+If everything works well, the following output should be expected
+```
+  node           label x      probs
+1   -1 JQ765433.1.1505 5 0.09071821
+2   -1 JQ766308.1.1248 2 0.99966469
+3   -1 GY203941.1.1493 4 0.99999796
+4   -1 GY324971.1.1500 9 0.82278712
+5   -1 JQ765578.1.1444 6 0.83112444
 ```
