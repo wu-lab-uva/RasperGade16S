@@ -12,7 +12,7 @@ parse_jplace = function(f,split=1){
   node.hash = lapply(node.tips[res.uniq.node],function(x){
     c(sort_and_digest(x),sort_and_digest(setdiff(res.tree$tip.label,x)))
   })
-  cat(sprintf("Formatting insert location information\n",length(res.uniq.node)))
+  cat(sprintf("Formatting insert location information\n"))
   place.loc = lapply(1:dim(res@placements)[1],function(i){
     this.des = res@placements$node[i]
     this.parent = getAncestor(res.tree,this.des)

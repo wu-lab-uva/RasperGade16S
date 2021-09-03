@@ -19,6 +19,7 @@ predict_16SGCN_from_sequences = function(seqs){
 #' @rdname predict_16SGCN_from_jplace
 predict_16SGCN_from_jplace = function(jplace,numCores = 1,save2file=FALSE){
   insert.locations = parse_jplace(jplace,split = numCores)
+  cat("Insert locations parsed.\n")
   if(save2file) saveRDS(insert.locations,sprintf("%s.locations.RDS",jplace))
   insert.prediction = mclapply(insert.locations,function(this.insert){
     this.res = predictHiddenStateWithPE(FMR = RasperGade16S.refdata$FMR,
@@ -26,15 +27,18 @@ predict_16SGCN_from_jplace = function(jplace,numCores = 1,save2file=FALSE){
     this.res$weight = this.insert$weight
     return(this.res)
   },mc.cores = numCores)
+  cat("Copy number predicted.\n")
   insert.res = list(hsp=do.call(rbind,lapply(insert.prediction,function(x){x$hsp})),
                     error=do.call(c,lapply(insert.prediction,function(x){x$error})),
                     weight = do.call(c,lapply(insert.prediction,function(x){x$weight})))
+  if(save2file) saveRDS(insert.res,sprintf("%s.prediction.RDS",jplace))
   unique.insert.res = lapply(split(x=1:length(insert.res$error),insert.res$hsp$label),function(i){
     new.error = mix_errors_by_weight(insert.res$error[i],insert.res$weight[i])
     new.stat = unname(calculate_error_mean_and_var(new.error))
     new.hsp = data.frame(node=-1,label=insert.res$hsp$label[i[1]],x=new.stat[1],var=new.stat[2])
-    return(list(hsp=new.hsp,error=new.error))
+    return(list(hsp=new.hsp,error=list(new.error)))
   })
+  cat("Multiple placements merged.\n")
   insert.res = list(hsp=do.call(rbind,lapply(unique.insert.res,function(x){x$hsp})),
                     error=do.call(c,lapply(unique.insert.res,function(x){x$error})))
   insert.discrete.res = 
@@ -44,6 +48,7 @@ predict_16SGCN_from_jplace = function(jplace,numCores = 1,save2file=FALSE){
                    function(i){
                      discretizeResult(res = insert.res$hsp[i,],error =insert.res$error[i],laplace = FALSE)
                      }))
+  cat("Copy number discretized.\n")
   insert.GCN = insert.discrete.res$x
   names(insert.GCN) = insert.discrete.res$label
   if(save2file) saveRDS(list(discrete=insert.discrete.res,continuous=insert.res),
