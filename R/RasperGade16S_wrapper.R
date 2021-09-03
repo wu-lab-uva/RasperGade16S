@@ -43,11 +43,11 @@ predict_16SGCN_from_jplace = function(jplace,numCores = 1,save2file=FALSE){
                     error=do.call(c,lapply(unique.insert.res,function(x){x$error})))
   insert.discrete.res = 
     do.call(rbind,
-            lapply(split(1:length(insert.res$error),
+            mclapply(split(1:length(insert.res$error),
                          mod(1:length(insert.res$error),numCores)),
                    function(i){
                      discretizeResult(res = insert.res$hsp[i,],error =insert.res$error[i],laplace = FALSE)
-                     }))
+                     },mc.cores = numCores))
   cat("Copy number discretized.\n")
   insert.GCN = insert.discrete.res$x
   names(insert.GCN) = insert.discrete.res$label
