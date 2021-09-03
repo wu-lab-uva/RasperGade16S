@@ -2,7 +2,7 @@
 #' @description Calls EPA-ng and insert query sequences into the reference
 #' @export
 #' @rdname insert_query_with_EPA
-insert_query_with_EPA = function(seqs,tree,ref.seqs,model,save.path,numCores=1,max.out=1,intern=TRUE){
+insert_query_with_EPA = function(seqs,tree,ref.seqs,model,save.path,numCores=0,max.out=99,intern=TRUE){
   if(missing(seqs)) stop("Path to trimmed query alignments must be provided!")
   if(missing(save.path)) save.path = "RasperGade16S_EPA/"
   if(!dir.exists(save.path)) dir.create(path = save.path,recursive = TRUE)
@@ -10,10 +10,13 @@ insert_query_with_EPA = function(seqs,tree,ref.seqs,model,save.path,numCores=1,m
   if(missing(ref.seqs)) ref.seqs = system.file("extdata","reference.trimmed.afa",package = "RasperGade16S",mustWork = TRUE)
   if(missing(model)) model = system.file("extdata","reference.RAxML.model.txt",package = "RasperGade16S",mustWork = TRUE)
   if(Sys.info()["sysname"]=="Windows") stop("EPA-ng currently not available on Windows.\nSee https://github.com/Pbdas/epa-ng for more information.")
-  #cmd = sprintf("epa-ng -t %s -s %s -q %s --model %s --preserve-rooting on --outdir %s --redo -T %d --filter-max %d",
-  #              tree,ref.seqs,seqs,model,save.path,numCores,max.out)
-  cmd = sprintf("epa-ng -t %s -s %s -q %s --model %s --preserve-rooting on --outdir %s --redo --filter-max %d",
-                tree,ref.seqs,seqs,model,save.path,max.out)
+  if(numCores<1){
+    cmd = sprintf("epa-ng -t %s -s %s -q %s --model %s --preserve-rooting on --outdir %s --redo --filter-max %d",
+                  tree,ref.seqs,seqs,model,save.path,max.out)
+  }else{
+    cmd = sprintf("epa-ng -t %s -s %s -q %s --model %s --preserve-rooting on --outdir %s --redo -T %d --filter-max %d",
+                  tree,ref.seqs,seqs,model,save.path,numCores,max.out)
+  }
   print(cmd)
   cmd.out=system(command = cmd,intern = intern)
   return(list(out=cmd.out,jplace=sprintf("%s/epa_result.jplace",save.path)))

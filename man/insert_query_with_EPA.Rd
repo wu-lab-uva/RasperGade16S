@@ -10,8 +10,8 @@ insert_query_with_EPA(
   ref.seqs,
   model,
   save.path,
-  numCores = 1,
-  max.out = 1,
+  numCores = 0,
+  max.out = 99,
   intern = TRUE
 )
 }
