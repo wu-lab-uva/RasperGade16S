@@ -67,12 +67,12 @@ print(pred.GCN$tab)
 ```
 If everything works well, the following output should be expected
 ```
-            label x      probs
-1 JQ765433.1.1505 5 0.09071821
-2 JQ766308.1.1248 2 0.99966469
-3 GY203941.1.1493 4 0.99999796
-4 GY324971.1.1500 9 0.82278712
-5 JQ765578.1.1444 6 0.83112444
+              label x      probs
+0.1 GY203941.1.1493 4 0.99999796
+0.2 GY324971.1.1500 9 0.82278712
+0.3 JQ765433.1.1505 8 0.04355867
+0.4 JQ765578.1.1444 6 0.83112359
+0.5 JQ766308.1.1248 2 0.99966469
 ```
 To run on your own sequence, supply the path to the FASTA file via the seqs= argument
 ```
