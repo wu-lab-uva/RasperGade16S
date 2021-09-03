@@ -29,7 +29,7 @@ predict_16SGCN_from_sequences = function(seqs){
 #' @export
 #' @rdname predict_16SGCN_from_jplace
 predict_16SGCN_from_jplace = function(jplace,numCores = 1,save2file=FALSE){
-  insert.locations = parse_jplace(epa.out$jplace,split = numCores)
+  insert.locations = parse_jplace(jplace,split = numCores)
   if(save2file) saveRDS(insert.locations,sprintf("%s.locations.RDS",jplace))
   insert.prediction = mclapply(insert.locations,function(this.insert){
     this.res = predictHiddenStateWithPE(FMR = RasperGade16S.refdata$FMR,
