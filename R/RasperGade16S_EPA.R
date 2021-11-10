@@ -33,7 +33,7 @@ align_with_HMM_and_trim = function(seqs,hmm,mapali,mask,save.path){
   if(missing(hmm)) hmm = system.file("extdata","16S_core_gg.hmm",package = "RasperGade16S",mustWork = TRUE)
   if(missing(mapali)) mapali = system.file("extdata","aligned_remove_dot.fasta",package = "RasperGade16S",mustWork = TRUE)
   if(missing(mask)) mask = RasperGade16S.GG.13.8.mask.keys
-  if(Sys.info()["sysname"]=="Windows") stop("HMMER3 currently not available on Windows.\nSee https://http://hmmer.org/ for more information.")
+  if(Sys.info()["sysname"]=="Windows") stop("HMMER3 currently not available on Windows.\nSee http://hmmer.org/ for more information.")
   cmd = sprintf("hmmalign --trim --dna -o %s/seq.align --mapali %s %s %s",
                 save.path,mapali,hmm,seqs)
   print(cmd)
