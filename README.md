@@ -25,9 +25,11 @@ HMMER 3 (available from http://hmmer.org/)
 EPA-ng (available from  https://github.com/Pbdas/epa-ng)
 
 For macOS, you can install HMMER3 and EPA-ng using brew (https://brew.sh)
+```
     brew install hmmer
     brew install easel
     brew install epa-ng
+```
 
 The following packages are required:
 `ape`,`castor`,`RasperGade`,`phyloseq`,`vegan`,`seqinr`,`treeio`,`microbiome`
