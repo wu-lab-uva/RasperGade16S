@@ -14,7 +14,7 @@ Detailed analyses are described in the preprint: `Accounting for 16S rRNA copy n
 doi: --
 
 ## System requirements
-For full functionality of RasperGade16S, POSIX-compliant system (e.g., Linux or macOS) is required.
+For full functionality of RasperGade16S, POSIX-compliant system (e.g., Linux or macOS but not Windows) is required.
 
 The package has been tested on Ubuntu and macOS.
 
