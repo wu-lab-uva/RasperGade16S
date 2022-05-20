@@ -24,6 +24,10 @@ HMMER 3 (available from http://hmmer.org/)
 
 EPA-ng (available from  https://github.com/Pbdas/epa-ng)
 
+You can download the raspergade13.yml file and use conda (https://www.anaconda.com) to install HMMER3 and EPA-ng.
+```
+    conda env create -f raspergade16s.yml
+```
 For macOS, you can install HMMER3 and EPA-ng using brew (https://brew.sh)
 ```
     brew install hmmer
@@ -31,7 +35,7 @@ For macOS, you can install HMMER3 and EPA-ng using brew (https://brew.sh)
     brew install epa-ng
 ```
 
-The following packages are required:
+The following R packages are required:
 `ape`,`castor`,`RasperGade`,`phyloseq`,`vegan`,`seqinr`,`treeio`,`microbiome`
 
 ## Installation
