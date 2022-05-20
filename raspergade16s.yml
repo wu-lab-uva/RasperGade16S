@@ -1,0 +1,11 @@
+name: raspergade16s
+
+channels:
+- bioconda
+- bioconda/label/cf201901
+
+
+dependencies:
+- hmmer
+- easel
+- epa-ng
