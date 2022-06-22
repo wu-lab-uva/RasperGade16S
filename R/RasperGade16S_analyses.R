@@ -97,7 +97,14 @@ correct_RAD_with_confidence = function(abundance,error,lower.edge="bounce",n=100
     return(this.rad)
   })
   median.abun = apply(perm.abun,1,median)
-  CI.abun = apply(apply(perm.abun,2,relative_abundance),1,quantile,probs=c(0.025,0.975))
+  CI.abun = sapply(1:length(abundance),function(i){
+    focal.abun = perm.abun[i,]
+    other.abun = apply(apply(perm.abun[-i,],1,sort),1,sum)
+    focal.relative.abun = sort(do.call(c,lapply(focal.abun,function(xx){
+      xx/(xx+other.abun)
+    })))
+    return(quantile(focal.relative.abun,probs=c(0.025,0.975)))
+  })
   names(median.abun) = names(abundance)
   colnames(CI.abun) = names(abundance)
   this.rad = sort(relative_abundance(median.abun),decreasing = TRUE)
