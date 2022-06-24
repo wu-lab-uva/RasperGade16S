@@ -225,6 +225,20 @@ elementwise_coverage_dist = function(dist1,CI,detail=FALSE){
   return(sum(coverage)/prod(dim(coverage)))
 }
 #' @export
+correct_PERMANOVA= function(abundance.table,GCN,metadata,
+                            method="bray",...){
+  correct.table = correct_abundance_table(abundance.table,GCN)
+  correct.phyloseq = phyloseq(otu_table(correct.table,taxa_are_rows = FALSE))
+  if(method=="Aitchison"){
+    correct.dist = calculate_Aitchison_dist(correct.phyloseq)
+  }else{
+    correct.dist = distance(physeq = correct.phyloseq,method = method,...)
+  }
+  correct.PERMANOVA = adonis(formula = correct.dist~V1,data = metadata,permutations = 999)
+  return(list(dist = correct.dist,
+              correct= correct.PERMANOVA))
+}
+#' @export
 correct_PERMANOVA_with_confidence = function(abundance.table,error,metadata,
                                              method="bray",alpha=0.05,n=1000,numCores=1,...){
   perm.GCN = sapply(1:n,function(nn){
@@ -313,8 +327,8 @@ correct_randomforest_with_confidence = function(abundance.table,error,metadata,n
 }
 #' @export
 correct_randomforest = function(abundance.table,GCN,metadata){
-  correct_abundance_table(abundance.table,GCN)
+  correct.table = correct_abundance_table(abundance.table,GCN)
   correct.rf = randomforest_cross_validation(predictor = as.matrix(correct.table),
                                              response = metadata$V1)
-  return(correct= correct.rf)
+  return(correct.rf)
 }
