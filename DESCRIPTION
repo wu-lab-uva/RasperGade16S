@@ -12,6 +12,7 @@ Depends:
     RasperGade,
     phyloseq,
     R (>= 2.10)
+biocViews:
 Imports:
         microbiome,
         vegan
