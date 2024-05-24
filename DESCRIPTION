@@ -12,9 +12,11 @@ Depends:
     RasperGade,
     phyloseq,
     R (>= 2.10)
+biocViews:
 Imports:
         microbiome,
         vegan
+Remotes: wu-lab-uva/RasperGade
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
