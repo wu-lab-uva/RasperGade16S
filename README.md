@@ -9,7 +9,7 @@ In addition to what `RasperGade` can do, `RasperGade16S` has some functions dedi
 
 3. correcting 16S rRNA GCN variation in analyses of bacterial composition with confidence provided
 
-Detailed analyses are described in the preprint: `Accounting for 16S rRNA copy number prediction uncertainty and its implications in microbial diversity analyses`
+Detailed analyses are described in the paper: `Accounting for 16S rRNA copy number prediction uncertainty and its implications in microbial diversity analyses`
 
 doi: [(https://doi.org/10.1038/s43705-023-00266-0)](https://doi.org/10.1038/s43705-023-00266-0)
 
