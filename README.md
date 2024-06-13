@@ -11,7 +11,7 @@ In addition to what `RasperGade` can do, `RasperGade16S` has some functions dedi
 
 Detailed analyses are described in the preprint: `Accounting for 16S rRNA copy number prediction uncertainty and its implications in microbial diversity analyses`
 
-doi: [--](https://doi.org/10.1038/s43705-023-00266-0)
+doi: [(https://doi.org/10.1038/s43705-023-00266-0)](https://doi.org/10.1038/s43705-023-00266-0)
 
 ## System requirements
 For full functionality of RasperGade16S, POSIX-compliant system (e.g., Linux or macOS but not Windows) is required.
